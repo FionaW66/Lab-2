@@ -1,7 +1,7 @@
 ---
 title: "Lab 02 - Plastic waste"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Fiona Wang"
+date: "Jan-28-2025"
 output: github_document
 ---
 
@@ -16,6 +16,19 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 ```
 
 ## Exercises
+
+```{r initial ggplot, message=FALSE, warning=FALSE}
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) + 
+  geom_histogram(binwidth = 0.2)
+```
+
+There is one country that stands out, let's filter to find this country!
+
+```{r find outlier}
+plastic_waste %>%
+  filter(plastic_waste_per_cap > 3.5)
+```
+It is Trinidad and Tobago from North America. It is a country that I am not familiar with. It seems like they have high consumption of single-use plastics and limited recycling infrastructure.  
 
 ### Exercise 1
 
