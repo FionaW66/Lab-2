@@ -31,7 +31,7 @@ plastic_waste %>%
 
 It is Trinidad and Tobago from North America. I didn't expect this result, mainly because it is a country that I am not familiar with. It seems like they have high consumption of single-use plastics and limited recycling infrastructure.  
 
-### Exercise 1
+### Exercise 1 Histogram
 
 It seems like there weren't a lot of countries reported on Oceania and South America, so they seem to have less plastic waste. North America has the outlier (Trinidad and Tobago). Most countries plastic waste is between 0 to 0.5.The tallest bars among these graphs are 0.0-0.2 and 0.2-0.4.
 
@@ -59,14 +59,25 @@ Fill the curves of the density graph and adjust the transparency.
 ggplot(data = plastic_waste, 
        mapping = aes(x = plastic_waste_per_cap, color = continent,
                      fill = continent)) + 
-  geom_density(alpha = 0.3)
+  geom_density(alpha = 0.7)
 ```
 
-### Exercise 2
-
-```{r plastic-waste-density}
-# insert code here
+### Exercise 2 Recreate density plot
+To compare between mapping and setting/geom, I am trying out the following two ways. First, let's use geom_density to define color and fill, and we use mapping to define alpha. The second way is to put color and fill in mapping while defining alpha in the setting/geom.
+```{r plastic-waste-density lower alpha, warning=FALSE}
+#The first way
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, alpha = 0.1)) + 
+  geom_density(color = "pink", fill = "blue")
+#The second way
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     color = continent, fill = continent)) +
+  geom_density(alpha = 0.1)
 ```
+
+2.2 answer: As we can see, if we define color and fill in geom_density, we cannot distinguish between each continent, as this will be a setting for all of the continents. If we put color and fill in mapping, we can ask R to map each continent using different colors. For alpha, when I put it in the mapping, no transparency took place. Also, we want the same transparency to be applied to each of the continent. This is why we just define alpha in the setting, so it can be applied globally.  
+
 
 ### Exercise 3
 
