@@ -36,17 +36,57 @@ plastic_waste %>%
     ##   total_pop
     ## 1   1341465
 
-It is Trinidad and Tobago from North America. It is a country that I am
-not familiar with. It seems like they have high consumption of
-single-use plastics and limited recycling infrastructure.
+It is Trinidad and Tobago from North America. I didn’t expect this
+result, mainly because it is a country that I am not familiar with. It
+seems like they have high consumption of single-use plastics and limited
+recycling infrastructure.
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+It seems like there weren’t a lot of countries reported on Oceania and
+South America, so they seem to have less plastic waste. North America
+has the outlier (Trinidad and Tobago). Most countries plastic waste is
+between 0 to 0.5.The tallest bars among these graphs are 0.0-0.2 and
+0.2-0.4.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap, color = continent)) + 
+  geom_histogram(binwidth = 0.2) + 
+  facet_wrap(~continent, ncol = 3)
 ```
+
+![](lab-02_files/figure-gfm/plastic-waste-continent-1.png)<!-- -->
+
+Another way of visualizing is using density plots.
+
+``` r
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) + 
+  geom_density()
+```
+
+![](lab-02_files/figure-gfm/density%20plots-1.png)<!-- -->
+
+Compare distributions across continent by coloring density curves by
+continent.
+
+``` r
+ggplot(data = plastic_waste, mapping = aes(x=plastic_waste_per_cap, 
+       color = continent)) +
+  geom_density()
+```
+
+![](lab-02_files/figure-gfm/compare%20density-1.png)<!-- -->
+
+Fill the curves of the density graph and adjust the transparency.
+
+``` r
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, color = continent,
+                     fill = continent)) + 
+  geom_density(alpha = 0.3)
+```
+
+![](lab-02_files/figure-gfm/fill%20density-1.png)<!-- -->
 
 ### Exercise 2
 

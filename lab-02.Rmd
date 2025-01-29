@@ -28,14 +28,38 @@ There is one country that stands out, let's filter to find this country!
 plastic_waste %>%
   filter(plastic_waste_per_cap > 3.5)
 ```
-It is Trinidad and Tobago from North America. It is a country that I am not familiar with. It seems like they have high consumption of single-use plastics and limited recycling infrastructure.  
+
+It is Trinidad and Tobago from North America. I didn't expect this result, mainly because it is a country that I am not familiar with. It seems like they have high consumption of single-use plastics and limited recycling infrastructure.  
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+It seems like there weren't a lot of countries reported on Oceania and South America, so they seem to have less plastic waste. North America has the outlier (Trinidad and Tobago). Most countries plastic waste is between 0 to 0.5.The tallest bars among these graphs are 0.0-0.2 and 0.2-0.4.
 
-```{r plastic-waste-continent}
-# insert code here
+```{r plastic-waste-continent, message=FALSE, warning=FALSE}
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap, color = continent)) + 
+  geom_histogram(binwidth = 0.2) + 
+  facet_wrap(~continent, ncol = 3)
+```
+
+Another way of visualizing is using density plots. 
+```{r density plots, warning=FALSE}
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) + 
+  geom_density()
+```
+
+Compare distributions across continent by coloring density curves by continent.
+```{r compare density, warning=FALSE}
+ggplot(data = plastic_waste, mapping = aes(x=plastic_waste_per_cap, 
+       color = continent)) +
+  geom_density()
+```
+
+Fill the curves of the density graph and adjust the transparency.
+```{r fill density, warning=FALSE}
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, color = continent,
+                     fill = continent)) + 
+  geom_density(alpha = 0.3)
 ```
 
 ### Exercise 2
