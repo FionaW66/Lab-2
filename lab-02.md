@@ -43,9 +43,9 @@ recycling infrastructure.
 
 ### Exercise 1 Histogram
 
-It seems like there weren’t a lot of countries reported on Oceania and
-South America, so they seem to have less plastic waste. North America
-has the outlier (Trinidad and Tobago). Most countries plastic waste is
+There weren’t a lot of countries reported on Oceania and South America,
+so they seem to have less plastic waste. North America has the outlier
+(Trinidad and Tobago). Most countries’ plastic waste per capita is
 between 0 to 0.5.The tallest bars among these graphs are 0.0-0.2 and
 0.2-0.4.
 
@@ -150,7 +150,7 @@ ggplot(data = plastic_waste,
 
 4.1. In general, it seems like the more plastic waste per capita, the
 more mismanaged plastic waste per capita. If there is a linear
-relationship, there seems to be a positive one.
+relationship, it is a positive one.
 
 ``` r
 ggplot(data = plastic_waste,
@@ -201,8 +201,44 @@ ggplot(data = plastic_waste, mapping = aes(x = coastal_pop,
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+Looking at plot 1 below, the general curve shows that the higher the
+proportion (from 0 to 1), the more plastic waste per capita. There is
+not much to comment on specific continent, as they are scattered and
+hard to keep track of. What’s interesting is that some countries have
+proportions that are higher than 1 which is weird.
+
+Looking at plot 2 below, this graph shows the trend of each continent.
+All shows a general increase. However, there also seems to be a decrease
+in trend for some continents.
 
 ``` r
-# insert code here
+plastic_waste$coastpror = plastic_waste$coastal_pop/plastic_waste$total_pop
+
+ggplot(data = plastic_waste %>%
+         filter(plastic_waste_per_cap < 3.5)) + 
+         geom_point(aes(x = coastpror, y = plastic_waste_per_cap, color = continent)) + 
+  stat_smooth(aes(x = coastpror, y = plastic_waste_per_cap)) + 
+         labs(title = "Plastic waste vs. coastal population proportion" , 
+                subtitle = "by continent" , 
+                x = "Coastal population proportion (Coastal / total population" , 
+                y = "Plastic waste per capita" ) 
 ```
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+![](lab-02_files/figure-gfm/recreate-viz-1.png)<!-- -->
+
+``` r
+ggplot(data = plastic_waste %>%
+         filter(plastic_waste_per_cap < 3.5), 
+       mapping = aes(x = coastpror, y = plastic_waste_per_cap, color = continent)) +
+  geom_point() + stat_smooth() +
+         labs(title = "Plastic waste vs. coastal population proportion" , 
+                subtitle = "by continent" , 
+                x = "Coastal population proportion (Coastal / total population" , 
+                y = "Plastic waste per capita" ) 
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+![](lab-02_files/figure-gfm/recreate-viz-2.png)<!-- -->
