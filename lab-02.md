@@ -146,25 +146,58 @@ ggplot(data = plastic_waste,
 
 ![](lab-02_files/figure-gfm/plastic-waste-violin-1.png)<!-- -->
 
-### Exercise 4
+### Exercise 4 Scatterplot
 
-Remove this text, and add your answer for Exercise 4 here.
-
-``` r
-# insert code here
-```
+4.1. In general, it seems like the more plastic waste per capita, the
+more mismanaged plastic waste per capita. If there is a linear
+relationship, there seems to be a positive one.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste,
+       mapping = aes(x = plastic_waste_per_cap, 
+                     y = mismanaged_plastic_waste_per_cap)) +
+  geom_point()
 ```
 
-``` r
-# insert code here
-```
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-1.png)<!-- -->
+
+4.2. As we see from the plot below, all continent has a positive
+relationship between plastic waste per capita and mismanaged plastic
+waste per capita. Some have steeper slopes: Asia and Africa, whereas
+some have smaller slopes:North America, Europe).
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap,
+                     y = mismanaged_plastic_waste_per_cap,
+                     color = continent)) +
+  geom_point(alpha = 0.5)
 ```
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-continent-1.png)<!-- -->
+
+4.3. When asked to visualize this relationship, I was originally
+thinking that population might affect plastic waste per capita. That’s
+why plastic waste per capita is the x variable, and the population
+variables are on the y-axis. Both plots don’t appear to be perfect
+linear relationships. Comparing these two plots, I would say that the
+coastal population plot appears to be more strongly linearly associated.
+
+``` r
+ggplot(data = plastic_waste, mapping = aes(x = total_pop,
+                                           y = plastic_waste_per_cap)) + 
+  geom_point()
+```
+
+![](lab-02_files/figure-gfm/plastic-waste-population-total-1.png)<!-- -->
+
+``` r
+ggplot(data = plastic_waste, mapping = aes(x = coastal_pop,
+                                           y = plastic_waste_per_cap)) +
+  geom_point()
+```
+
+![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
 
 ### Exercise 5
 
