@@ -140,7 +140,7 @@ Looking at plot 1 below, the general curve shows that the higher the proportion 
 
 Looking at plot 2 below, this graph shows the trend of each continent. All shows a general increase. However, there also seems to be a decrease in trend for some continents. 
 
-```{r recreate-viz, warning=FALSE}
+```{r recreate-viz, message=FALSE, warning=FALSE}
 plastic_waste$coastpror = plastic_waste$coastal_pop/plastic_waste$total_pop
 
 ggplot(data = plastic_waste %>%
