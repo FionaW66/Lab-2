@@ -114,21 +114,37 @@ ggplot(data = plastic_waste,
 
 ![](lab-02_files/figure-gfm/plastic-waste-density%20lower%20alpha-2.png)<!-- -->
 
-As we can see, if we define color and fill in geom_density, we cannot
-distinguish between each continent, as this will be a setting for all of
-the continents. If we put color and fill in mapping, we can ask R to map
-each continent using different colors. For alpha, when I put it in the
-mapping, no transparency took place. Also, we want the same transparency
-to be applied to each of the continent. This is why we just define alpha
-in the setting, so it can be applied globally.
+2.2 answer: As we can see, if we define color and fill in geom_density,
+we cannot distinguish between each continent, as this will be a setting
+for all of the continents. If we put color and fill in mapping, we can
+ask R to map each continent using different colors. For alpha, when I
+put it in the mapping, no transparency took place. Also, we want the
+same transparency to be applied to each of the continent. This is why we
+just define alpha in the setting, so it can be applied globally.
 
-### Exercise 3
-
-Remove this text, and add your answer for Exercise 3 here.
+Another way to visualize is using box plots.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste,
+       mapping = aes(x = continent, y = plastic_waste_per_cap)) +
+  geom_boxplot()
 ```
+
+![](lab-02_files/figure-gfm/box%20plot-1.png)<!-- -->
+
+### Exercise 3 Violin
+
+Both boxplot and violin plot give us outliers. The boxplot gives us the
+median and quartiles that a violin plot doesn’t. A violin plot can give
+you the distribution of each continent which the boxplot doesn’t.
+
+``` r
+ggplot(data = plastic_waste,
+       mapping = aes(x = continent, y = plastic_waste_per_cap)) +
+  geom_violin()
+```
+
+![](lab-02_files/figure-gfm/plastic-waste-violin-1.png)<!-- -->
 
 ### Exercise 4
 
